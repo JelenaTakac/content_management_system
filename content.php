@@ -11,6 +11,7 @@ if (isset($_GET['subj'])) {
     $selected_subj = "";
     $selected_page = "";
 }
+$selected_subject = get_subject_by_id($selected_subj);
 ?>
 <?php include("includes/header.php"); ?>
 <table id="structure">
@@ -46,8 +47,8 @@ if (isset($_GET['subj'])) {
             </ul>
         </td>
         <td id="page">
-            <h2>Content Area</h2>
-            <?php echo $selected_subj; ?><br>
+            <h2><?php echo $selected_subject["menu_name"]; ?></h2>
+            <br>
             <?php echo $selected_page; ?><br>
         </td>
     </tr>
