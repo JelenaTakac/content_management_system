@@ -6,15 +6,12 @@
         <td id="navigation">
             <ul class="subjects">
                 <?php
-                $subject_sql = "SELECT * FROM subjects";
-                $subject_set = $conn->query($subject_sql);
-
+                $subject_set = get_all_subjects();
                 if ($subject_set->num_rows > 0) {
                     while ($subject = $subject_set->fetch_assoc()) {
                         echo "<li>{$subject["menu_name"]}</li>";
-                        $page_sql = "SELECT * FROM pages WHERE subject_id = {$subject["id"]}";
-                        $page_set = $conn->query($page_sql);
 
+                        $page_set = get_pages_for_subjects($subject["id"]);
                         if ($page_set->num_rows > 0) {
                             echo "<ul class='pages'>";
                             while ($page = $page_set->fetch_assoc()) {
