@@ -1,5 +1,17 @@
 <?php require_once("includes/db_connection.php"); ?>
 <?php require_once("includes/functions.php"); ?>
+<?php
+if (isset($_GET['subj'])) {
+    $selected_subj = $_GET['subj'];
+    $selected_page = "";
+} elseif (isset($_GET['page'])) {
+    $selected_subj = "";
+    $selected_page = $_GET['page'];
+} else {
+    $selected_subj = "";
+    $selected_page = "";
+}
+?>
 <?php include("includes/header.php"); ?>
 <table id="structure">
     <tr>
@@ -9,14 +21,22 @@
                 $subject_set = get_all_subjects();
                 if ($subject_set->num_rows > 0) {
                     while ($subject = $subject_set->fetch_assoc()) {
-                        echo "<li><a href=\"content.php?subj=" . urlencode($subject["id"]) .
+                        echo "<li";
+                        if ($subject["id"] == $selected_subj) {
+                            echo " class=\"selected\"";
+                        }
+                        echo "><a href=\"content.php?subj=" . urlencode($subject["id"]) .
                             "\">{$subject["menu_name"]}</a></li>";
 
                         $page_set = get_pages_for_subjects($subject["id"]);
                         if ($page_set->num_rows > 0) {
                             echo "<ul class='pages'>";
                             while ($page = $page_set->fetch_assoc()) {
-                                echo "<li><a href=\"content.php?page=" . urlencode($page["id"]) . "\">{$page["menu_name"]}</a></li>";
+                                echo "<li";
+                                if ($page["id"] == $selected_page) {
+                                    echo " class=\"selected\"";
+                                }
+                                echo "><a href=\"content.php?page=" . urlencode($page["id"]) . "\">{$page["menu_name"]}</a></li>";
                             }
                             echo "</ul>";
                         }
@@ -27,6 +47,8 @@
         </td>
         <td id="page">
             <h2>Content Area</h2>
+            <?php echo $selected_subj; ?><br>
+            <?php echo $selected_page; ?><br>
         </td>
     </tr>
 </table>
