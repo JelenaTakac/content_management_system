@@ -4,21 +4,28 @@
 <table id="structure">
     <tr>
         <td id="navigation">
-            <?php
-            // 3. Performe database query
-            $sql = "SELECT * FROM subjects";
-            $result = $conn->query($sql);
+            <ul class="subjects">
+                <?php
+                $subject_sql = "SELECT * FROM subjects";
+                $subject_set = $conn->query($subject_sql);
 
-            // 4. Use returned data
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<br>" . $row["menu_name"] . " " . $row["position"];
+                if ($subject_set->num_rows > 0) {
+                    while ($subject = $subject_set->fetch_assoc()) {
+                        echo "<li>{$subject["menu_name"]}</li>";
+                        $page_sql = "SELECT * FROM pages WHERE subject_id = {$subject["id"]}";
+                        $page_set = $conn->query($page_sql);
+
+                        if ($page_set->num_rows > 0) {
+                            echo "<ul class='pages'>";
+                            while ($page = $page_set->fetch_assoc()) {
+                                echo "<li>{$page["menu_name"]}</li>";
+                            }
+                            echo "</ul>";
+                        }
+                    }
                 }
-            } else {
-                echo "0 results";
-            }
-            ?>
+                ?>
+            </ul>
         </td>
         <td id="page">
             <h2>Content Area</h2>
