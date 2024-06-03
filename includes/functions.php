@@ -52,3 +52,21 @@ function get_subject_by_id($subject_id)
         return NULL;
     }
 }
+
+function get_page_by_id($page_id)
+{
+    global $conn;
+    $query = "SELECT * ";
+    $query .= "FROM pages ";
+    $query .= "WHERE id=" . $page_id . " ";
+    $query .= "LIMIT 1";
+    $result_set = $conn->query($query);
+    confirm_query($result_set);
+    // REMEMBER:
+    // if no rows are returned, fetch_array will return false
+    if ($page = $result_set->fetch_assoc()) {
+        return $page;
+    } else {
+        return NULL;
+    }
+}
