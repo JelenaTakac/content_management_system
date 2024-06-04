@@ -29,7 +29,7 @@
                 <p>Visible:
                     <input type="radio" name="visible" value="0"> No
                     &nbsp;
-                    <input type="radio" name="visible" id="1"> Yes
+                    <input type="radio" name="visible" value="1"> Yes
                 </p>
                 <input type="submit" value="Add Subject">
             </form>
