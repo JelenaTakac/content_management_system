@@ -2,6 +2,14 @@
 
 // This file is the place to store all basic functons
 
+function redirect_to($location = NULL)
+{
+    if ($location != NULL) {
+        header("Location: $location");
+        exit;
+    }
+}
+
 function confirm_query($result_set)
 {
     global $conn;
