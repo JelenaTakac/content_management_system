@@ -61,12 +61,12 @@ if (isset($_POST['submit'])) {
                 echo "<p class=\"message\">" . $message . "</p>";
             } ?>
 
-            <?php 
+            <?php
             // output a list of the fields thath had errors
             if (!empty($errors)) {
                 echo "<p class=\"errors\">";
                 echo "Please review the following fields: <br />";
-                foreach($errors as $error) {
+                foreach ($errors as $error) {
                     echo " - " . $error . "<br />";
                 }
                 echo "</p>";
@@ -95,22 +95,35 @@ if (isset($_POST['submit'])) {
                 </p>
                 <p>Visible:
                     <input type="radio" name="visible" value="0" <?php if ($selected_subject['visible'] == 0) {
-                        echo "checked";
-                    } ?>> No
+                                                                        echo "checked";
+                                                                    } ?>> No
                     &nbsp;
                     <input type="radio" name="visible" value="1" <?php if ($selected_subject['visible'] == 1) {
-                        echo "checked";
-                    }
-                    ?>> Yes
+                                                                        echo "checked";
+                                                                    }
+                                                                    ?>> Yes
                 </p>
                 <input type="submit" name="submit" value="Edit Subject">
 
                 &nbsp;&nbsp;
                 <a href="delete_subject.php?subj=<?php echo urlencode($selected_subject['id']); ?>" onclick="return confirm('Are you sure?');">Delete Subject</a>
             </form>
-
             <br>
             <a href="content.php">Cancel</a>
+            <div style="margin-top: 2em; border-top: 1px solid #000000;">
+                <h3>Pages in this subject:</h3>
+                <ul>
+                    <?php
+                    $subject_pages = get_pages_for_subjects($selected_subject['id']);
+                    while ($page = $subject_pages->fetch_assoc()) {
+                        echo "<li><a href=\"content.php?page={$page['id']}\">
+                        {$page['menu_name']}</a></li>";
+                    }
+                    ?>
+                </ul>
+                <br>
+                + <a href="new_page.php?subj=<?php echo $selected_subject['id']; ?>">Add a new page to this subject</a>
+            </div>
         </td>
     </tr>
 </table>

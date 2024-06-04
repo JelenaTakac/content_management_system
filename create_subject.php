@@ -18,7 +18,14 @@ $errors = array();
 // Way 2
 $required_fields = array('menu_name', 'position', 'visible');
 foreach ($required_fields as $fieldname) {
-    if (!isset($_POST[$fieldname]) || empty($_POST[$fieldname])) {
+    if (!isset($_POST[$fieldname]) || (empty($_POST[$fieldname]) && $_POST[$fieldname] != 0)) {
+        $errors[] = $fieldname;
+    }
+}
+
+$fields_with_lengths = array('menu_name' => 30);
+foreach ($fields_with_lengths as $fieldname => $maxlength) {
+    if (strlen(trim($fieldname)) > $maxlength) {
         $errors[] = $fieldname;
     }
 }

@@ -19,6 +19,8 @@
                 <div class="page-content">
                     <?php echo $selected_page["content"]; ?>
                 </div>
+                <br>
+                <a href="edit_page.php?page=<?php echo urlencode($selected_page['id']); ?>">Edit page</a>
             <?php } else { // nothing selected 
             ?>
                 <h2>Select a subject or page to edit</h2>
