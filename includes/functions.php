@@ -105,7 +105,7 @@ function navigation($selected_subject, $selected_page)
             if ($selected_subject && $subject["id"] == $selected_subject["id"]) {
                 $output .= " class=\"selected\"";
             }
-            $output .= "><a href=\"content.php?subj=" . urlencode($subject["id"]) .
+            $output .= "><a href=\"edit_subject.php?subj=" . urlencode($subject["id"]) .
                 "\">{$subject["menu_name"]}</a></li>";
 
             $page_set = get_pages_for_subjects($subject["id"]);
