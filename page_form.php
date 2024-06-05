@@ -1,3 +1,6 @@
+<?php require_once("includes/session.php"); ?>
+<?php confirm_logged_in(); ?>
+
 <?php // this page is included by new_page.php and edit_page.php 
 ?>
 <?php if (!isset($new_page)) { // Corrected usage
@@ -41,14 +44,14 @@ if (!isset($selected_page) || $selected_page === NULL) {
 </p>
 <p>Visible:
     <input type="radio" name="visible" value="0" <?php if ($selected_page['visible'] == 0) {
-        echo " checked";
-    }
-    ?> /> No
+                                                        echo " checked";
+                                                    }
+                                                    ?> /> No
     &nbsp;
     <input type="radio" name="visible" value="1" <?php if ($selected_page['visible'] == 1) {
-        echo " checked";
-    }
-    ?> /> Yes
+                                                        echo " checked";
+                                                    }
+                                                    ?> /> Yes
 </p>
 <p>Content:<br />
     <textarea name="content" rows="20" cols="80"><?php echo $selected_page['content']; ?></textarea>

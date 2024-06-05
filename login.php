@@ -2,7 +2,13 @@
 <?php require_once("includes/db_connection.php"); ?>
 <?php require_once("includes/functions.php"); ?>
 
-<?php include_once("includes/form_functions.php");
+<?php 
+
+    if (logged_in()) {
+        redirect_to("staff.php");
+    }
+
+    include_once("includes/form_functions.php");
 
 // START FORM PROCESSING
 if (isset($_POST['submit'])) {
@@ -50,6 +56,9 @@ if (isset($_POST['submit'])) {
       
     }
 } else { // Form has not been submitted
+    if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+        $message = "You are now logged out.";
+    }
     $username = "";
     $password = "";
 }
