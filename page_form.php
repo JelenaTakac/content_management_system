@@ -23,10 +23,10 @@ if (!isset($selected_page) || $selected_page === NULL) {
         <?php
 
         if (!$new_page) {
-            $page_set = get_pages_for_subjects($selected_page['subject_id']);
+            $page_set = get_pages_for_subject($selected_page['subject_id']);
             $page_count = mysqli_num_rows($page_set);
         } else {
-            $page_set = get_pages_for_subjects($selected_subject['id']);
+            $page_set = get_pages_for_subject($selected_subject['id']);
             $page_count = mysqli_num_rows($page_set) + 1;
         }
         for ($count = 1; $count <= $page_count; $count++) {

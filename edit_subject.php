@@ -114,7 +114,7 @@ if (isset($_POST['submit'])) {
                 <h3>Pages in this subject:</h3>
                 <ul>
                     <?php
-                    $subject_pages = get_pages_for_subjects($selected_subject['id']);
+                    $subject_pages = get_pages_for_subject($selected_subject['id']);
                     while ($page = $subject_pages->fetch_assoc()) {
                         echo "<li><a href=\"content.php?page={$page['id']}\">
                         {$page['menu_name']}</a></li>";
