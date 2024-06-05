@@ -1,5 +1,7 @@
+<?php require_once("includes/session.php"); ?>
 <?php require_once("includes/db_connection.php"); ?>
 <?php require_once("includes/functions.php"); ?>
+
 <?php include_once("includes/form_functions.php");
 
 // START FORM PROCESSING
@@ -31,6 +33,8 @@ if (isset($_POST['submit'])) {
             // username/password authenticated
             // and only 1 match
             $found_user = mysqli_fetch_array($result_set);
+            $_SESSION['user_id'] = $found_user['id']; 
+            $_SESSION['username'] = $found_user['username']; 
             redirect_to("staff.php");
         } else {
             // username/password combo was not found in the database
