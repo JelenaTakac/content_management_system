@@ -95,13 +95,13 @@ if (isset($_POST['submit'])) {
                 </p>
                 <p>Visible:
                     <input type="radio" name="visible" value="0" <?php if ($selected_subject['visible'] == 0) {
-                                                                        echo "checked";
-                                                                    } ?>> No
+                        echo "checked";
+                    } ?>> No
                     &nbsp;
                     <input type="radio" name="visible" value="1" <?php if ($selected_subject['visible'] == 1) {
-                                                                        echo "checked";
-                                                                    }
-                                                                    ?>> Yes
+                        echo "checked";
+                    }
+                    ?>> Yes
                 </p>
                 <input type="submit" name="submit" value="Edit Subject">
 
